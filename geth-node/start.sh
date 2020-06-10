@@ -8,5 +8,6 @@ geth --datadir=~/.ethereum/devchain init "/root/genesis/genesis.json"
 sleep 3
 BOOTSTRAP_IP=`getent hosts bootstrap | cut -d" " -f1`
 GETH_OPTS=${@/XXX/$BOOTSTRAP_IP}
-node /root/whisper/receive
+
 geth $GETH_OPTS
+node /root/whisper/receive.js

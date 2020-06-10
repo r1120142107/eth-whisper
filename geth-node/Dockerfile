@@ -7,12 +7,13 @@ RUN cd /root &&\
     git clone https://github.com/cubedro/eth-net-intelligence-api --depth 1 &&\
     cd eth-net-intelligence-api &&\
     npm install &&\
-    npm install -g pm2 &&\
-    npm install web3@1.0.0
+    npm install -g pm2
 
 ADD start.sh /root/start.sh
 ADD app.json /root/eth-net-intelligence-api/app.json
 RUN chmod +x /root/start.sh
 ADD whisper /root/whisper
+RUN cd /root/whisper &&\
+    npm install
 
 ENTRYPOINT /root/start.sh
