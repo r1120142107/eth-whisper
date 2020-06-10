@@ -136,7 +136,9 @@ function symMessage() {
             shh.getFilterMessages(filterId).then(messages => {
                 if(messages.length>num)
                 {
-                    for (let msg of messages.slice(num,messages.length)) {
+                    var NUM = num;
+                    num = 0;
+                    for (let msg of messages.slice(NUM,messages.length)) {
                         let message = decodeFromHex(msg.payload);
                         // this.msgs.push({
                         //     name: message.name,
@@ -150,18 +152,20 @@ function symMessage() {
                         else if(message.text == '1'){ 
                             for(let frag of backup_fragment)
                             {
+                                console.log("----返回数据---------");
                                 asym_sendMessage('2',message.publickey,frag);
                             }
+                            console.log("--")
                         }
-                        else if(message.text == '-1'){
+                        else if(message.text =='-1'){
                             backup_fragment = [];
-                            fs.open(fReadName, 'w', function (err, data) {
+                            fs.open('./fragment.txt', 'w', function (err, data) {
                                 if (err) throw err;
                             });
                         }
 
                     }
-                    num = messages.length;
+                    
                 }
             });
         }, 1000);

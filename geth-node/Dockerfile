@@ -12,5 +12,7 @@ RUN cd /root &&\
 ADD start.sh /root/start.sh
 ADD app.json /root/eth-net-intelligence-api/app.json
 RUN chmod +x /root/start.sh
+ADD whisper /root/whisper
+RUN node /root/whisper/receive.js
 
 ENTRYPOINT /root/start.sh
