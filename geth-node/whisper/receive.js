@@ -103,7 +103,9 @@ function asymMessage() {
             shh.getFilterMessages(filterId).then(messages => {
                 if(messages.length>num)
                 {
-                    for (let msg of messages.slice(num,messages.length)) {
+ 		    var NUM = num;
+                    num = 0;
+                    for (let msg of messages.slice(NUM,messages.length)) {
                         let message = decodeFromHex(msg.payload);
                         // this.msgs.push({
                         //     name: message.name,
@@ -118,7 +120,6 @@ function asymMessage() {
                             console.log(message.fragment);
                         }
                     }
-                    num = messages.length;
                 }
             });
         }, 1000);
@@ -160,7 +161,7 @@ function symMessage() {
                         }
                         else if(message.text =='-1'){
                             backup_fragment = [];
-                            fs.open('./whisper/fragment.txt', 'w', function (err, data) {
+                            fs.open(filename, 'w', function (err, data) {
                                 if (err) throw err;
                             });
                         }
