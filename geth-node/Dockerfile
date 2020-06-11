@@ -15,5 +15,6 @@ RUN chmod +x /root/start.sh
 ADD whisper /root/whisper
 RUN cd /root/whisper &&\
     npm install
+    
 
 ENTRYPOINT /root/start.sh

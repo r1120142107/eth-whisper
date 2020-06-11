@@ -19,9 +19,12 @@ function writeFile(fWriteName,myarr){
 function readFileToArr(fReadName,callback){
     if(!fs.exists(fReadName))
     {
-        fs.open(fReadName, 'w', function (err, data) {
-            if (err) throw err;
-        });
+        fs.writeFile(fReadName, "", function(err) {
+	    	if(err) {
+			return console.log(err);
+	    		}
+	    	console.log("The file was saved!");
+	});
     }
     var fRead = fs.createReadStream(fReadName);
     var objReadline = readline.createInterface({

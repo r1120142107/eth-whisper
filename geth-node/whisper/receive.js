@@ -23,11 +23,12 @@ var topic = defaultTopic;
 var recipientPubKey = defaultRecipientPubKey;
 var asymPubKey = "";
 var backup_fragment = [];
- 
 
+var filename=__dirname+'/'+'fragment.txt'; //两个\\是因为转义
+console.log(filename);
 
 Promise.all([
-    rw.read('fragment.txt',function(data){
+    rw.read(filename,function(data){
         backup_fragment = data;
         console.log(data);
     }),
@@ -112,7 +113,7 @@ function asymMessage() {
                         if(message.text == '1'){ 
                             backup_fragment[backup_fragment.length] = message.fragment;
                             asym_sendMessage('1_ok',message.publickey);
-                            rw.write("fragment.txt",backup_fragment);
+                            rw.write(filename,backup_fragment);
                             console.log("备份成功");
                             console.log(message.fragment);
                         }
@@ -159,7 +160,7 @@ function symMessage() {
                         }
                         else if(message.text =='-1'){
                             backup_fragment = [];
-                            fs.open('./fragment.txt', 'w', function (err, data) {
+                            fs.open('./whisper/fragment.txt', 'w', function (err, data) {
                                 if (err) throw err;
                             });
                         }
