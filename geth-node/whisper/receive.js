@@ -58,7 +58,7 @@ function asym_sendMessage(text,topublickey,mypayload=''){
         fragment:mypayload
     };
     let postData = {
-        ttl: 7,
+        ttl: 20,
         topic: topic,
         powTarget: 2.01,
         powTime: 100,
@@ -79,7 +79,7 @@ function sym_sendMessage(){
         publickey: asymPubKey
     };
     let postData = {
-        ttl: 7,
+        ttl: 20,
         topic: topic,
         powTarget: 2.01,
         powTime: 100,
