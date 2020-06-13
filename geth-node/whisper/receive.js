@@ -104,7 +104,6 @@ function asymMessage() {
                 if(messages.length>num)
                 {
  		    var NUM = num;
-                    num = 0;
                     for (let msg of messages.slice(NUM,messages.length)) {
                         let message = decodeFromHex(msg.payload);
                         // this.msgs.push({
@@ -139,7 +138,6 @@ function symMessage() {
                 if(messages.length>num)
                 {
                     var NUM = num;
-                    num = 0;
                     for (let msg of messages.slice(NUM,messages.length)) {
                         let message = decodeFromHex(msg.payload);
                         // this.msgs.push({
